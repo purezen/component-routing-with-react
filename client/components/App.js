@@ -10,8 +10,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <A visible={true}/>
-        <B visible={false}/>
+        <a href="#" onClick={() => this.props.setRoute('routeA')}>Expand A</a>
+        <br/>
+        <A/>
+        <br/>
+        <a href="#"  onClick={() => this.props.setRoute('routeB')}>Expand B</a>
+        <B/>
       </div>
     )
   }

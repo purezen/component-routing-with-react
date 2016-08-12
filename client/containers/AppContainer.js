@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrencyList: () => {
-      dispatch(a.fetchCurrencyList())
+    setRoute: (route) => {
+      dispatch(a.setRoute(route))
     }
   }
 }

@@ -1,44 +1,54 @@
 
-# Frontend Boilerplate
+# Component Routing in React (Proof-of-concept)
 
-A boilerplate of things that mostly shouldn't exist.
+A POC of routing in React.js using container components. Implemented via functional Higher-Order Components.
 
-## Contains
+While programming with React.js, I wanted to see how routing can be implemented apart from the standard practice of using React-Router.
 
-- [x] [Webpack](https://webpack.github.io)
-- [x] [React](https://facebook.github.io/react/)
-- [x] [Redux](https://github.com/reactjs/redux)
-- [x] [Babel](https://babeljs.io/)
-- [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
-- [x] [PostCSS](https://github.com/postcss/postcss)
-- [x] [CSS modules](https://github.com/outpunk/postcss-modules)
-- [x] [Rucksack](http://simplaio.github.io/rucksack/docs)
-- [x] [React Router Redux](https://github.com/reactjs/react-router-redux)
-- [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
-- [ ] Redux effects
-- [x] TodoMVC example
+Lately, I have been using function HOCs to abstract functionalities in a React app. Coupled alongwith 'Container (smart)' components, it has been a fun way to write apps in a React-Redux setup.
 
-## Setup
+So, it occured to me, what if routing could be implemented similarly?
 
-```
-$ npm install
+Hence I came with this approach. Basically, I wanted to implement routes in my app as,
+
+### `ContainerComponent.js`
+```javascript
+import Router from '../enhancers/router'
+
+const ChildContainer = connect(
+  (state) => state
+)(Router(Child, { route: 'childRoute' }))
 ```
 
-## Running
+### `ParentPresentationalComponent.js`
+```javascript
+import ChildContainer from '../containers/ChildContainer'
+
+class A extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div>
+        A
+        <br/>
+        <a href="#"  onClick={() => this.props.setRoute('route/childRoute')}>Expand Child component</a>
+        <br/>
+        <ChildContainer/>
+        <br/>
+      </div>
+    )
+  }
+}
+```
+
+## To run
 
 ```
-$ npm start
+$ npm install && npm start
 ```
-
-## Build
-
-```
-$ npm run build
-```
-
-## Note
-
-My personal projects have diverged from this quite a bit, I use browserify now instead etc, but feel free to use this if it fits your needs! I won't be updating it a ton for now unlesse I have time to update it to match my current workflow.
 
 # License
 
